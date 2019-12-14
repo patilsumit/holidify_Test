@@ -1,0 +1,13 @@
+Database Query
+
+1>
+select a.attractionName from destination d Join attractions a on a.placecode = d.placecode 
+
+2> select a.attractionName from destination d innerJoin attractions a on a.placecode = d.placecode where
+    d.statecode="KERALA" and a.iconcategory="Beaches" ORDER BY a.iconcategory DESC LIMIT 5 
+
+3>  select a.attractionName,d.statecode from destination d innerJoin attractions a on a.placecode = d.placecode where
+     (a.iconcategory="Temple" IN (SELECT TOP (5) statecode from destination GROUP BY statecode ORDER BY statecode )) 
+
+4>  select d.placeName from destination d innerJoin attractions a on a.placecode = d.placecode where
+     (select AVG(attractionRating) from attractions ) < 3.5 
